@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { products as data } from "./data/products";
 import { IProduct } from './models/product';
 import { ProductsService } from './services/products.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,31 @@ import { ProductsService } from './services/products.service';
 export class AppComponent implements OnInit {
 
   title = 'ecommerce app';
+  loading: boolean = false;
+
   //products:IProduct[] = data;//only for local json data
-  products: IProduct[] = [];
-loading:boolean=false;
+  //products: IProduct[] = [];//second way
+  products$: Observable<IProduct[]> //stream way
+
 
   constructor(private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
-    this.loading=true;
-    this.productsService.getAll().subscribe((products) => {      
-      console.log(products);
-      this.products = products;
-      this.loading=false;
-    })
+    this.loading = true;
+
+    //second way
+    // this.productsService.getAll().subscribe((products) => {      
+    //   console.log(products);
+    //   this.products = products;
+    //   this.loading=false;
+    // })
+
+    //stream way
+    //this.products$ = this.productsService.getAll()
+    //stream way + rxjs
+    this.products$ = this.productsService.getAll().pipe(tap(() => this.loading = false))
+
+
   }
 }
