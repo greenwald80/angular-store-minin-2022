@@ -5,15 +5,17 @@ import { AfterViewInit, Directive, ElementRef, OnInit } from '@angular/core';
 })
 export class FocusDirective implements OnInit, AfterViewInit {
 
-  constructor(private el:ElementRef) { }
+  constructor(private el: ElementRef) { }
+
+  ngOnInit(): void {
+    this.el.nativeElement.focus();
+  }
 
   //life cycle hook after onInit
   ngAfterViewInit(): void {
-   this.el.nativeElement.focus();
+    this.el.nativeElement.focus();
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
 
 }
