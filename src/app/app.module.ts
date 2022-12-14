@@ -6,17 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { GlobalerrorComponent } from './components/globalerror/globalerror.component';
+import { FormsModule } from '@angular/forms';
+import { FilterProductsPipe } from './pipes/filter-products.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    GlobalerrorComponent
+    GlobalerrorComponent,
+    FilterProductsPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

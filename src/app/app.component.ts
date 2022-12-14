@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   //products:IProduct[] = data;//only for local json data
   //products: IProduct[] = [];//second way
   products$: Observable<IProduct[]> //stream way
-
+  term = ''//for products filter
 
   constructor(private productsService: ProductsService) {
   }
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
     //stream way
     //this.products$ = this.productsService.getAll()
-    
+
     //stream way + rxjs
     this.products$ = this.productsService.getAll().pipe(tap(() => this.loading = false))
 
