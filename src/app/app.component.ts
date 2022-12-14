@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
 
     //stream way
     //this.products$ = this.productsService.getAll()
+    
     //stream way + rxjs
     this.products$ = this.productsService.getAll().pipe(tap(() => this.loading = false))
 
