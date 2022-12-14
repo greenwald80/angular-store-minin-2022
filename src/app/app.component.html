@@ -24,5 +24,13 @@
             [product]="product"></app-product>
     </div>
 
+    <!-- without binding - title="Create new product" -->
+    <!-- <app-modal title="Create new product">
+        <app-create-product></app-create-product>
+    </app-modal> -->
+    <!-- using binding - [title]="title" from modal.component.ts -->
+    <app-modal [title]="title">
+        <app-create-product></app-create-product>
+    </app-modal>
 
 </div>
