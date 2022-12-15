@@ -1,25 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { products as data } from "./data/products";
-import { IProduct } from './models/product';
-import { ProductsService } from './services/products.service';
-import { Observable, tap } from 'rxjs';
-import { ModalService } from './services/modal.service';
+import { ModalService } from 'src/app/services/modal.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-product-page',
+  templateUrl: './product-page.component.html',
+  styleUrls: ['./product-page.component.scss']
 })
-export class AppComponent implements OnInit {  
+export class ProductPageComponent implements OnInit {
+
+  title = 'ecommerce app';
+  loading: boolean = false;
 
   //products:IProduct[] = data;//only for local json data
   //products: IProduct[] = [];//second way
   //products$: Observable<IProduct[]> //stream way
-
-  //moved to product-page
-  // title = 'ecommerce app';
-  // loading: boolean = false;
-  // term = ''//for products filter
+  term = ''//for products filter
 
   constructor(public productsService: ProductsService, public modalService: ModalService) {
   }
@@ -39,12 +35,11 @@ export class AppComponent implements OnInit {
     //stream way + rxjs
     //this.products$ = this.productsService.getAll().pipe(tap(() => this.loading = false))
 
-    //moved to product-page
-    // this.loading = true;
-    // //modify for create product
-    // this.productsService.getAll().subscribe(()=>{
-    //   this.loading=false
-    // })
+    this.loading = true;
+    //modify for create product
+    this.productsService.getAll().subscribe(()=>{
+      this.loading=false
+    })
 
   }
 }

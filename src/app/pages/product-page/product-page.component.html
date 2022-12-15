@@ -1,0 +1,20 @@
+<h1 class="font-bold mb-2 text-center text-lg">{{title| titlecase}}</h1>
+
+<input type="text" class="mb-2 border py-2 px-4 w-full" placeholder="Filter products..." [(ngModel)]="term">
+
+<p *ngIf="loading" class="text-center text-lg">Loading...</p>
+
+
+<!-- modify for create product -->
+<div *ngIf="productsService.products">
+    <app-product *ngFor="let product of productsService.products | filterProducts:term; let i=index"
+        [product]="product"></app-product>
+</div>
+
+<!-- using binding - [title]="title" from modal.component.ts -->
+<app-modal [title]="title" *ngIf="modalService.isVisible$ | async">
+    <app-create-product></app-create-product>
+</app-modal>
+
+<button class="rounde-full bg-red-700 text-white fixed right-5 bottom-5 py-2 px-4"
+    (click)="modalService.open()">+</button>
