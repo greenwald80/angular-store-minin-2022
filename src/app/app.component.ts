@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   products$: Observable<IProduct[]> //stream way
   term = ''//for products filter
 
-  constructor(private productsService: ProductsService, public modalService: ModalService) {
+  constructor(public productsService: ProductsService, public modalService: ModalService) {
   }
 
   ngOnInit(): void {
