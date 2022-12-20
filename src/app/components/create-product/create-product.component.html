@@ -1,7 +1,35 @@
-<form [formGroup] = "form" (ngSubmit) ="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <span>Product name</span>
     <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="Product name" formControlName="title" appFocus>
+    <p class="text-red-600 font-medium mb-2" *ngIf="title.errors && title.touched">Please fill title field with min
+        length (now {{title.value.length}})</p>
 
-    <p class="text-red-600 font-medium mb-2" *ngIf="title.errors && title.touched">Please fill title field with min length (now {{title.value.length}})</p>
+    <span>Price</span>
+    <input type="number" class="border w-full py-2 px-4 mb-2" placeholder="Price" formControlName="price">
+    <p class="text-red-600 font-medium mb-2" *ngIf="price.errors && price.touched">Please fill price field with min 0
+    </p>
+
+    <span>Description</span>
+    <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="Description" formControlName="description">
+    <p class="text-red-600 font-medium mb-2" *ngIf="description.errors && description.touched">Please fill description
+        field with max length 500 (now {{description.value.length}})</p>
+
+    <span>Image</span>
+    <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="image " formControlName="image">
+    <p class="text-red-600 font-medium mb-2" *ngIf="image.errors && image.touched">Please fill image field</p>
+
+    <span>Category</span>
+    <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="Category" formControlName="category">
+    <p class="text-red-600 font-medium mb-2" *ngIf="category.errors && category.touched">Please fill category field with
+        min length (now {{category.value.length}})</p>
+
+    <span>Rate</span>
+    <input type="number" class="border w-full py-2 px-4 mb-2" placeholder="rate" formControlName="rate">
+    <p class="text-red-600 font-medium mb-2" *ngIf="rate.errors && rate.touched">Please fill rate field max 10</p>
+
+    <span>Count</span>
+    <input type="number" class="border w-full py-2 px-4 mb-2" placeholder="count" formControlName="count">
+    <p class="text-red-600 font-medium mb-2" *ngIf="count.errors && count.touched">Please fill count field max 99</p>
 
     <button type="submit" class="py-2 px-4 bg-blue-600 text-white">Create</button>
 </form>
